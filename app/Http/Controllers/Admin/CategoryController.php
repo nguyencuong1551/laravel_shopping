@@ -4,13 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Repository\Category\CategoryEloquentRepository;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    protected  $categoryRepository;
+    public function __construct(CategoryEloquentRepository $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
     public function index()
     {
-        $categories = Category::all();
+        $categories = $this->categoryRepository->getAll();
 
         return view('Admin.Category.home', [
             'categories' => $categories
@@ -25,9 +31,8 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $category = new Category();
-        $category->name = $request->get('name');
-        $category->id_parent = $request->get('id_parent');
+        $data = $request->all();
+        $category = $this->categoryRepository->create($data);
         $mess = "";
         if ($category->save()) {
             $mess = "{{ __('SUCCESS!!!') }}";
@@ -40,7 +45,7 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        $category = Category::find($id);
+        $category = $this->categoryRepository->find($id);
 
         return view('Admin.Category.edit', [
             'category' => $category
@@ -49,9 +54,8 @@ class CategoryController extends Controller
 
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
-        $category->name = $request->get('name');
-        $category->id_parent = $request->get('id_parent');
+        $data = $request->all();
+        $category = $this->categoryRepository->update($data, $id);
         $mess = "";
         if ($category->save()) {
             $mess = "{{ __('SUCCESS!!!') }}";
@@ -65,8 +69,7 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $category->delete();
+        $this->categoryRepository->delete($id);
 
         return redirect('/admin/home/category')->with('mess', 'SUCCESS!!!');
     }

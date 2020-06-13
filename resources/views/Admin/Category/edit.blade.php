@@ -27,11 +27,10 @@
                         <option value="3">{{ __('Thiết bị IT') }}</option>
                     </select>
                 </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block">{{ __('Continue to ADD') }}</button>
+            </form>
         </div>
-        <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit"
-                name="submit">{{ __('Continue to ADD') }}</button>
-        </form>
     </main>
 @endsection
 

@@ -49,22 +49,22 @@
                     <label for="email">{{ __('Category') }}:</label>
                     <select name="id_category" required>
                         @foreach ($categories as $category)
-                            <option value="<?= $category['id'] ?>"><?= $category['name']?></option>
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
                     <label for="email">{{ __('Event') }}:</label>
                     <select name="id_event" required>
                         <option value="0">{{ __('Không thuộc sự kiện nào') }}</option>
                         @foreach ($events as $event)
-                            <option value="<?= $event['id'] ?>"><?= $event['percent']?>%</option>
+                            <option value="{{ $event->id }}">{{ $event->percent }}%</option>
                         @endforeach
                     </select>
                 </div>
+
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block">{{ __('Continue to ADD') }}</button>
+            </form>
         </div>
-        <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit"
-                name="submit">{{ __('Continue to ADD') }}</button>
-        </form>
     </main>
 @endsection
 

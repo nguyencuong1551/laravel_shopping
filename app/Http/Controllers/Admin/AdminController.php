@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('checkAdmin');
-    }
-
     public function index()
     {
         $products = DB::table('products')->count();

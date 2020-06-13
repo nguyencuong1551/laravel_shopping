@@ -16,7 +16,7 @@
                 @csrf
                 <div class="mb-3">
                     <label for="email">{{ __('Name') }}:</label>
-                    <input type="text" class="form-control" id="email" name="name" required>
+                    <input type="text" class="form-control" id="email" name="nameEvent" required>
                 </div>
                 <div class="mb-3">
                     <label for="email">{{ __('Percent') }}:</label>
@@ -24,11 +24,10 @@
                 </div>
                 <div class="mb-3">
                     <label for="email">{{ __('Image') }}:</label>
-                    <input type="text" class="form-control" id="email" name="image" required>
+                    <input type="text" class="form-control" id="email" name="imageEvent" required>
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit"
-                        name="submit">{{ __('Continue to ADD') }}</button>
+                <button class="btn btn-primary btn-lg btn-block" >{{ __('Continue to ADD') }}</button>
             </form>
         </div>
     </main>

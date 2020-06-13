@@ -16,7 +16,7 @@
                 @csrf
                 <div class="mb-3">
                     <label for="email">{{ __('Name') }}:</label>
-                    <input type="text" class="form-control" id="email" name="name" value="{{ $event->nameEvent }}"
+                    <input type="text" class="form-control" id="email" name="nameEvent" value="{{ $event->nameEvent }}"
                            required>
                 </div>
                 <div class="mb-3">
@@ -26,12 +26,11 @@
                 </div>
                 <div class="mb-3">
                     <label for="email">{{ __('Image') }}:</label>
-                    <input type="text" class="form-control" id="email" value="{{ $event->imageEvent }}" name="image"
+                    <input type="text" class="form-control" id="email" value="{{ $event->imageEvent }}" name="imageEvent"
                            required>
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit"
-                        name="submit">{{ __('Continue to ADD') }}</button>
+                <button class="btn btn-primary btn-lg btn-block" >{{ __('Continue to ADD') }}</button>
             </form>
         </div>
     </main>

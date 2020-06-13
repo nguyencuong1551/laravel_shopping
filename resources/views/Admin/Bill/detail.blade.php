@@ -79,7 +79,7 @@
                     @foreach ($billDetail as $bill)
                         <tr>
                             <td>{{ $bill['id'] }}</td>
-                            <td>{{ $bill['name'] }}</td>
+                            <td>{{ $bill['nameSP'] }}</td>
                             <td>
                                 <img src="{{ $bill['image'] }}" height="70px" width="100px">
                             </td>

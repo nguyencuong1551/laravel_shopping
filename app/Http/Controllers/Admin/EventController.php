@@ -4,13 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Event;
 use App\Http\Controllers\Controller;
+use App\Repository\Event\EventEloquentRepository;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+    protected $eventRepository;
+    public function __construct(EventEloquentRepository $eventRepository)
+    {
+        $this->eventRepository = $eventRepository;
+    }
+
     public function index()
     {
-        $events = Event::all();
+        $events = $this->eventRepository->getAll();
 
         return view('Admin.Event.home', [
             'events' => $events
@@ -25,10 +32,8 @@ class EventController extends Controller
 
     public function store(Request $request)
     {
-        $events = new Event();
-        $events->nameEvent = $request->get('name');
-        $events->percent = $request->get('percent');
-        $events->imageEvent = $request->get('image');
+        $data = $request->all();
+        $events = $this->eventRepository->create($data);
         $mess = "";
         if ($events->save()) {
             $mess = "{{ __('SUCCESS!!!') }}";
@@ -41,7 +46,7 @@ class EventController extends Controller
 
     public function edit($id)
     {
-        $event = Event::find($id);
+        $event = $this->eventRepository->find($id);
 
         return view('Admin.Event.edit', [
             'event' => $event
@@ -50,10 +55,8 @@ class EventController extends Controller
 
     public function update(Request $request, $id)
     {
-        $event = Event::find($id);
-        $event->nameEvent = $request->get('name');
-        $event->percent = $request->get('percent');
-        $event->imageEvent = $request->get('image');
+        $data = $request->all();
+        $event = $this->eventRepository->update($data, $id);
         $mess = "";
         if ($event->save()) {
             $mess = "{{ __('SUCCESS!!!') }}";
@@ -67,9 +70,10 @@ class EventController extends Controller
 
     public function destroy($id)
     {
-        $event = Event::find($id);
-        $event->delete();
+        $this->eventRepository->delete($id);
 
         return redirect('/admin/home/event')->with('mess', 'SUCCESS!!!');
     }
 }
+
+

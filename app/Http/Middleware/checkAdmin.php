@@ -17,10 +17,15 @@ class checkAdmin
     public function handle($request, Closure $next)
     {
         $user = Session::get('user');
-        if ($user['role'] != 'admin')
-        {
+        $check = Session::has('user');
+        if ($check) {
+            if ($user['role'] != 'admin') {
+                return redirect('/');
+            }else{
+                return $next($request);
+            }
+        }else{
             return redirect('/');
         }
-        return $next($request);
     }
 }

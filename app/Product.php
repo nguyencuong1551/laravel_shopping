@@ -10,22 +10,22 @@ class Product extends Model
 
     public function comment()
     {
-        return $this->hasMany('app\Comment', 'id_product');
+        return $this->hasMany(Comment::class, 'id_product');
     }
 
-    public function bill()
+    public function bill_detail()
     {
-        return $this->belongsToMany('app\Bill');
+        return $this->hasMany(Bill_Detail::class, 'id_product');
     }
 
     public function category()
     {
-        return $this->belongsTo('app\Category');
+        return $this->belongsTo(Category::class, 'id_category');
     }
 
     public function event()
     {
-        return $this->belongsTo('app\Event');
+        return $this->belongsTo(Event::class,'id_event');
     }
 }
 

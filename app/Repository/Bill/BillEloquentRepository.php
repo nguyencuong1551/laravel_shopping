@@ -17,7 +17,7 @@ class BillEloquentRepository extends EloquentRepository implements BillRepositor
     public function detail($id)
     {
         // TODO: Implement detail() method.
-        $result = Bill_Detail::where('id_bill', $id)->get();
+        $result = Bill_Detail::where('id_bill', $id)->with('product')->get();
 
         return $result;
     }

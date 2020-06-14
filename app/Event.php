@@ -10,7 +10,7 @@ class Event extends Model
 
     public function product()
     {
-        return $this->hasMany('app\Product', 'id_event');
+        return $this->hasMany(Product::class, 'id_event');
     }
 }
 
